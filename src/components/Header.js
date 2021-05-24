@@ -3,5 +3,5 @@ export default function Header() {
     <header className="header">
       <div className="header__logo" />
     </header>
-  )
+  );
 }

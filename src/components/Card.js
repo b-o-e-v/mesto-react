@@ -1,14 +1,25 @@
-export default function Card({ card, onCardClick }) {
+export default function Card({
+  userID,
+  ownerID,
+  card,
+  onCardClick,
+  onCardDeletePopupOpen,
+}) {
   function handleClick() {
     onCardClick(card);
   }
+
   return (
     <li className="card">
-      <button className="card__delete" type="button" />
+      <button
+        onClick={onCardDeletePopupOpen}
+        className={`card__delete ${userID === ownerID && "show-block"}`}
+        type="button"
+      />
       <img
         onClick={handleClick}
-        className="card__img" 
-        alt={card.name} 
+        className="card__img"
+        alt={card.name}
         src={card.link}
       />
       <div className="card__description">
@@ -19,5 +30,5 @@ export default function Card({ card, onCardClick }) {
         </div>
       </div>
     </li>
-  )
+  );
 }
