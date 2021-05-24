@@ -10,4 +10,4 @@
 * JavaScript: открытие и закрытие попапов, редактирование информации на странице, лайк карточек, классы;
 * Сборка проекта. Webpack.
 
-[Ссылка на GitHub Pages](https://b-o-e-v.github.io/mesto/)
+[Ссылка на GitHub Pages](https://b-o-e-v.github.io/mesto-react/)
