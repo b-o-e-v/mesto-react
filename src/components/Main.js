@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
-import Profile from "./Profile";
-import Gallery from "./Gallery";
+import Profile from './Profile'
+import Gallery from './Gallery'
 
-import { api } from "../utils/api";
+import { api } from '../utils/api'
 
 export default function Main({
   onEditProfile,
@@ -12,28 +12,28 @@ export default function Main({
   onCardClick,
   onCardDeletePopupOpen,
 }) {
-  const [userID, setUserID] = useState("");
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
+  const [userID, setUserID] = useState('')
+  const [userName, setUserName] = useState('')
+  const [userDescription, setUserDescription] = useState('')
+  const [userAvatar, setUserAvatar] = useState('')
 
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState([])
 
   useEffect(() => {
     api
       .getServerData()
       .then(([userData, initialCards]) => {
-        setUserName(userData.name);
-        setUserDescription(userData.about);
-        setUserAvatar(userData.avatar);
-        setUserID(userData._id);
-        setCards(initialCards);
+        setUserName(userData.name)
+        setUserDescription(userData.about)
+        setUserAvatar(userData.avatar)
+        setUserID(userData._id)
+        setCards(initialCards)
       })
-      .catch((error) => console.log(error));
-  }, []);
+      .catch((error) => console.log(error))
+  }, [])
 
   return (
-    <main className="main">
+    <main className='main'>
       <Profile
         userAvatar={userAvatar}
         userName={userName}
@@ -49,5 +49,5 @@ export default function Main({
         onCardDeletePopupOpen={onCardDeletePopupOpen}
       />
     </main>
-  );
+  )
 }

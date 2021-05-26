@@ -1,4 +1,4 @@
-import Card from "./Card";
+import Card from './Card'
 
 export default function Gallery({
   userID,
@@ -7,8 +7,8 @@ export default function Gallery({
   onCardDeletePopupOpen,
 }) {
   return (
-    <section className="gallery">
-      <ul className="cards">
+    <section className='gallery'>
+      <ul className='cards'>
         {cards.map((card) => (
           <Card
             userID={userID}
@@ -21,5 +21,5 @@ export default function Gallery({
         ))}
       </ul>
     </section>
-  );
+  )
 }
