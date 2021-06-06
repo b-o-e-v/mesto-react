@@ -3,10 +3,11 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 export default function Card({
   card,
-  onOpenImage,
+  // onOpenImage,
   onCardClick,
-  onCardDeletePopupOpen,
+  // onCardDeletePopupOpen,
   onCardLike,
+  onCardDelete
 }) {
   const currentUser = useContext(CurrentUserContext)
 
@@ -18,7 +19,7 @@ export default function Card({
 
   function handleClick() {
     onCardClick(card)
-    onOpenImage(true)
+    // onOpenImage(true)
   }
 
   function handleClickLike() {
@@ -26,7 +27,8 @@ export default function Card({
   }
 
   function handleClickDelete() {
-    onCardDeletePopupOpen(card)
+    // onCardDeletePopupOpen(card)
+    onCardDelete(card)
   }
 
   return (

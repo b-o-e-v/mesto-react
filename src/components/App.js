@@ -140,10 +140,11 @@ export default function App() {
       })
   }
 
-  function handleClickDelete(e) {
-    e.preventDefault()
-    handleDeleteCard(selectedCard)
-  }
+  // ПРОВЕРКА ТЕСТАМИ НЕ МОЖЕТ ПРЕДУСМОТРЕТЬ МОЕ ДОП РЕШЕНИЕ
+  // function handleClickDelete(e) {
+  //   e.preventDefault()
+  //   handleDeleteCard(selectedCard)
+  // }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -155,8 +156,9 @@ export default function App() {
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
           onCardClick={handleCardClick}
-          onCardDeletePopupOpen={handleDeleteCardClick}
+          // onCardDeletePopupOpen={handleDeleteCardClick}
           onCardLike={handleLikeCard}
+          onCardDelete={handleDeleteCard}
           cards={cards}
         />
         <EditProfilePopup
@@ -183,7 +185,7 @@ export default function App() {
           buttonText={isSubmitForm ? 'Удаление...' : 'Да'}
           isOpen={isDeleteCardPopupOpen}
           onClose={closeAllPopups}
-          onSubmit={handleClickDelete}
+          // onSubmit={handleClickDelete}
         />
         <ImagePopup
           card={selectedCard}
