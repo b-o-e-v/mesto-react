@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { CurrentUserContext } from '../context/CurrentUserContext'
+import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import { api } from '../utils/api'
 
 import Main from './Main'
