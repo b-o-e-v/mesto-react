@@ -1,20 +1,24 @@
+import { useContext } from 'react'
+import { CurrentUserContext } from '../contexts/CurrentUserContext'
+
 export default function Card({
   card,
   onOpenImage,
   onCardClick,
   onCardDeletePopupOpen,
   onCardLike,
-  user,
 }) {
-  const isOwn = card.owner._id === user._id
-  const isLiked = card.likes.some((i) => i._id === user._id)
+  const currentUser = useContext(CurrentUserContext)
+
+  const isOwn = card.owner._id === currentUser._id
+  const isLiked = card.likes.some((i) => i._id === currentUser._id)
 
   const cardDeleteButtonClassName = `card__delete ${isOwn && 'show-block'}`
   const cardLikeButtonClassName = `card__like ${isLiked && 'card__like_active'}`
 
   function handleClick() {
-    onOpenImage()
     onCardClick(card)
+    onOpenImage()
   }
 
   function handleClickLike() {

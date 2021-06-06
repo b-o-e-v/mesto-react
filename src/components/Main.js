@@ -32,7 +32,6 @@ export default function Main({
         onCardClick={onCardClick}
         onCardDeletePopupOpen={onCardDeletePopupOpen}
         onCardLike={onCardLike}
-        user={currentUser}
       />
     </main>
   )

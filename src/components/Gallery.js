@@ -6,7 +6,6 @@ export default function Gallery({
   onCardClick,
   onCardDeletePopupOpen,
   onCardLike,
-  user,
 }) {
   return (
     <section className='gallery'>
@@ -19,7 +18,6 @@ export default function Gallery({
             onCardClick={onCardClick}
             onCardDeletePopupOpen={onCardDeletePopupOpen}
             onCardLike={onCardLike}
-            user={user}
           />
         ))}
       </ul>
