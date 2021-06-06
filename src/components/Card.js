@@ -18,6 +18,7 @@ export default function Card({
 
   function handleClick() {
     onCardClick(card)
+    onOpenImage(true)
   }
 
   function handleClickLike() {
@@ -36,10 +37,7 @@ export default function Card({
         type='button'
       />
       <img
-        onClick={() => {
-          handleClick()
-          onOpenImage()
-        }}
+        onClick={handleClick}
         className='card__img'
         alt={card.name}
         src={card.link}

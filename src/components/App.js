@@ -49,10 +49,6 @@ export default function App() {
     setIsEditAvatarPopupOpen(true)
   }
 
-  function handleImageCardClick() {
-    setIsImagePopupOpen(true)
-  }
-
   function handleDeleteCardClick(card) {
     setIsDeleteCardPopupOpen(true)
     setSelectedCard(card)
@@ -154,7 +150,7 @@ export default function App() {
       <div className='page'>
         <Header />
         <Main
-          onOpenImage={handleImageCardClick}
+          onOpenImage={setIsImagePopupOpen}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
