@@ -62,10 +62,6 @@ export default function App() {
     setSelectedCard({ name: '', link: '' })
   }
 
-  function handleCardClick(card) {
-    setSelectedCard(card)
-  }
-
   function handleLikeCard(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id)
 
@@ -153,7 +149,7 @@ export default function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
-          onCardClick={handleCardClick}
+          onCardClick={setSelectedCard}
           onCardDeletePopupOpen={handleDeleteCardClick}
           onCardLike={handleLikeCard}
           cards={cards}
