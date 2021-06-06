@@ -93,7 +93,10 @@ export default function App() {
         closeAllPopups()
         setIsSubmitForm(false)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        console.log(error)
+        setIsSubmitForm(false)
+      })
   }
 
   function handleUpdateUser(data) {
@@ -105,7 +108,10 @@ export default function App() {
         closeAllPopups()
         setIsSubmitForm(false)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        console.log(error)
+        setIsSubmitForm(false)
+      })
   }
 
   function handleUpdateAvatar(data) {
@@ -117,7 +123,10 @@ export default function App() {
         closeAllPopups()
         setIsSubmitForm(false)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        console.log(error)
+        setIsSubmitForm(false)
+      })
   }
 
   function handleAddPlaceSubmit(card) {
@@ -129,7 +138,10 @@ export default function App() {
         closeAllPopups()
         setIsSubmitForm(false)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        console.log(error)
+        setIsSubmitForm(false)
+      })
   }
 
   function handleClickDelete(e) {
