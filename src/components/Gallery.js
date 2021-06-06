@@ -4,8 +4,7 @@ export default function Gallery({
   cards,
   onOpenImage,
   onCardClick,
-  onCardDelete,
-  // onCardDeletePopupOpen,
+  onCardDeletePopupOpen,
   onCardLike,
 }) {
   return (
@@ -17,9 +16,8 @@ export default function Gallery({
             card={card}
             onOpenImage={onOpenImage}
             onCardClick={onCardClick}
-            // onCardDeletePopupOpen={onCardDeletePopupOpen}
+            onCardDeletePopupOpen={onCardDeletePopupOpen}
             onCardLike={onCardLike}
-            onCardDelete={onCardDelete}
           />
         ))}
       </ul>

@@ -10,9 +10,8 @@ export default function Main({
   onAddPlace,
   onEditAvatar,
   onCardClick,
-  // onCardDeletePopupOpen,
+  onCardDeletePopupOpen,
   onCardLike,
-  onCardDelete,
   cards,
 }) {
   const currentUser = useContext(CurrentUserContext)
@@ -31,9 +30,8 @@ export default function Main({
         cards={cards}
         onOpenImage={onOpenImage}
         onCardClick={onCardClick}
-        // onCardDeletePopupOpen={onCardDeletePopupOpen}
+        onCardDeletePopupOpen={onCardDeletePopupOpen}
         onCardLike={onCardLike}
-        onCardDelete={onCardDelete}
       />
     </main>
   )
