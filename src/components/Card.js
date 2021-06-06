@@ -3,8 +3,9 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 export default function Card({
   card,
+  onOpenImage,
   onCardClick,
-  // onCardDeletePopupOpen,
+  onCardDeletePopupOpen,
   onCardLike,
   onCardDelete,
 }) {
@@ -17,6 +18,7 @@ export default function Card({
   const cardLikeButtonClassName = `card__like ${isLiked && 'card__like_active'}`
 
   function handleClick() {
+    onOpenImage()
     onCardClick(card)
   }
 
@@ -25,7 +27,7 @@ export default function Card({
   }
 
   function handleClickDelete() {
-    onCardDelete(card)
+    onCardDeletePopupOpen(card)
   }
 
   return (

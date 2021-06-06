@@ -15,13 +15,17 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import { api } from '../utils/api'
 
 export default function App() {
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false)
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
   const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false)
+
   const [currentUser, setCurrentUser] = useState({})
   const [selectedCard, setSelectedCard] = useState({ name: '', link: '' })
   const [cards, setCards] = useState([])
+
+  const [isSubmitForm, setIsSubmitForm] = useState(false)
 
   useEffect(() => {
     api
@@ -45,8 +49,13 @@ export default function App() {
     setIsEditAvatarPopupOpen(true)
   }
 
-  function handleDeleteCardClick() {
+  function handleImageCardClick() {
+    setIsImagePopupOpen(true)
+  }
+
+  function handleDeleteCardClick(card) {
     setIsDeleteCardPopupOpen(true)
+    setSelectedCard(card)
   }
 
   function closeAllPopups() {
@@ -54,6 +63,7 @@ export default function App() {
     setIsAddPlacePopupOpen(false)
     setIsEditAvatarPopupOpen(false)
     setIsDeleteCardPopupOpen(false)
+    setIsImagePopupOpen(false)
     setSelectedCard({ name: '', link: '' })
   }
 
@@ -74,43 +84,57 @@ export default function App() {
   }
 
   function handleDeleteCard(card) {
+    setIsSubmitForm(true)
     api
       .deleteCard(card._id)
       .then(() => {
         const newCards = cards.filter((c) => c._id !== card._id)
         setCards(newCards)
+        closeAllPopups()
+        setIsSubmitForm(false)
       })
       .catch((error) => console.log(error))
   }
 
   function handleUpdateUser(data) {
+    setIsSubmitForm(true)
     api
       .setUserInfo(data)
       .then((res) => {
         setCurrentUser(res)
         closeAllPopups()
+        setIsSubmitForm(false)
       })
       .catch((error) => console.log(error))
   }
 
   function handleUpdateAvatar(data) {
+    setIsSubmitForm(true)
     api
       .updateAvatar(data)
       .then((res) => {
         setCurrentUser(res)
         closeAllPopups()
+        setIsSubmitForm(false)
       })
       .catch((error) => console.log(error))
   }
 
   function handleAddPlaceSubmit(card) {
+    setIsSubmitForm(true)
     api
       .addCard(card)
       .then((res) => {
         setCards([res, ...cards])
         closeAllPopups()
+        setIsSubmitForm(false)
       })
       .catch((error) => console.log(error))
+  }
+
+  function handleClickDelete(e) {
+    e.preventDefault()
+    handleDeleteCard(selectedCard)
   }
 
   return (
@@ -118,6 +142,7 @@ export default function App() {
       <div className='page'>
         <Header />
         <Main
+          onOpenImage={handleImageCardClick}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
@@ -131,25 +156,33 @@ export default function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateProfile={handleUpdateUser}
+          isSubmitForm={isSubmitForm}
         />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
+          isSubmitForm={isSubmitForm}
         />
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
+          isSubmitForm={isSubmitForm}
         />
         <PopupWithForm
           title='Вы уверены?'
           name='delete'
-          buttonText='Да'
+          buttonText={isSubmitForm ? 'Удаление...' : 'Да'}
           isOpen={isDeleteCardPopupOpen}
           onClose={closeAllPopups}
+          onSubmit={handleClickDelete}
         />
-        <ImagePopup card={selectedCard} isClose={closeAllPopups} />
+        <ImagePopup
+          card={selectedCard}
+          isOpen={isImagePopupOpen}
+          isClose={closeAllPopups}
+        />
         <Footer />
       </div>
     </CurrentUserContext.Provider>

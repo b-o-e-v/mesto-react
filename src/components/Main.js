@@ -5,6 +5,7 @@ import Profile from './Profile'
 import Gallery from './Gallery'
 
 export default function Main({
+  onOpenImage,
   onEditProfile,
   onAddPlace,
   onEditAvatar,
@@ -28,6 +29,7 @@ export default function Main({
       />
       <Gallery
         cards={cards}
+        onOpenImage={onOpenImage}
         onCardClick={onCardClick}
         onCardDeletePopupOpen={onCardDeletePopupOpen}
         onCardLike={onCardLike}
