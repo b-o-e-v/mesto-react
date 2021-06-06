@@ -49,9 +49,8 @@ export default function App() {
     setIsEditAvatarPopupOpen(true)
   }
 
-  function handleDeleteCardClick(card) {
+  function handleDeleteCardClick() {
     setIsDeleteCardPopupOpen(true)
-    setSelectedCard(card)
   }
 
   function closeAllPopups() {

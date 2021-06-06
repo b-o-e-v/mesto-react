@@ -26,7 +26,8 @@ export default function Card({
   }
 
   function handleClickDelete() {
-    onCardDeletePopupOpen(card)
+    onCardClick(card)
+    onCardDeletePopupOpen()
   }
 
   return (
