@@ -15,7 +15,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import { api } from '../utils/api'
 
 export default function App() {
-  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false)
+  // const [isImagePopupOpen, setIsImagePopupOpen] = useState(false)
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
@@ -58,7 +58,7 @@ export default function App() {
     setIsAddPlacePopupOpen(false)
     setIsEditAvatarPopupOpen(false)
     // setIsDeleteCardPopupOpen(false)
-    setIsImagePopupOpen(false)
+    // setIsImagePopupOpen(false)
     setSelectedCard({ name: '', link: '' })
   }
 
