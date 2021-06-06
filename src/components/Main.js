@@ -28,7 +28,7 @@ export default function Main({
       />
       <Gallery
         cards={cards}
-        onOpenImage={onOpenImage}
+        // onOpenImage={onOpenImage}
         onCardClick={onCardClick}
         onCardDelete={onCardDelete}
         onCardLike={onCardLike}

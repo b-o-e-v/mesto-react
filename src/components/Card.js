@@ -3,7 +3,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 export default function Card({
   card,
-  onOpenImage,
+  // onOpenImage,
   onCardClick,
   onCardDelete,
   onCardLike,

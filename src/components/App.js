@@ -145,7 +145,7 @@ export default function App() {
       <div className='page'>
         <Header />
         <Main
-          onOpenImage={setIsImagePopupOpen}
+          // onOpenImage={setIsImagePopupOpen}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}

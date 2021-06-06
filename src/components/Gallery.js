@@ -14,7 +14,7 @@ export default function Gallery({
           <Card
             key={card._id}
             card={card}
-            onOpenImage={onOpenImage}
+            // onOpenImage={onOpenImage}
             onCardClick={onCardClick}
             onCardDelete={onCardDelete}
             onCardLike={onCardLike}
