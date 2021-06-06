@@ -161,7 +161,6 @@ export default function App() {
           onCardClick={handleCardClick}
           onCardDeletePopupOpen={handleDeleteCardClick}
           onCardLike={handleLikeCard}
-          onCardDelete={handleDeleteCard}
           cards={cards}
         />
         <EditProfilePopup

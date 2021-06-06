@@ -12,7 +12,6 @@ export default function Main({
   onCardClick,
   onCardDeletePopupOpen,
   onCardLike,
-  onCardDelete,
   cards,
 }) {
   const currentUser = useContext(CurrentUserContext)
@@ -33,7 +32,7 @@ export default function Main({
         onCardClick={onCardClick}
         onCardDeletePopupOpen={onCardDeletePopupOpen}
         onCardLike={onCardLike}
-        onCardDelete={onCardDelete}
+        user={currentUser}
       />
     </main>
   )
