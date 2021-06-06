@@ -4,7 +4,7 @@ import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
 
-import PopupWithForm from './PopupWithForm'
+// import PopupWithForm from './PopupWithForm'
 import EditProfilePopup from './EditProfilePopup'
 import AddPlacePopup from './AddPlacePopup'
 import EditAvatarPopup from './EditAvatarPopup'
@@ -19,7 +19,7 @@ export default function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
-  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false)
+  // const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false)
 
   const [currentUser, setCurrentUser] = useState({})
   const [selectedCard, setSelectedCard] = useState({ name: '', link: '' })
@@ -49,15 +49,15 @@ export default function App() {
     setIsEditAvatarPopupOpen(true)
   }
 
-  function handleDeleteCardClick() {
-    setIsDeleteCardPopupOpen(true)
-  }
+  // function handleDeleteCardClick() {
+  //   setIsDeleteCardPopupOpen(true)
+  // }
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
     setIsEditAvatarPopupOpen(false)
-    setIsDeleteCardPopupOpen(false)
+    // setIsDeleteCardPopupOpen(false)
     setIsImagePopupOpen(false)
     setSelectedCard({ name: '', link: '' })
   }
@@ -135,10 +135,10 @@ export default function App() {
       })
   }
 
-  function handleClickDelete(e) {
-    e.preventDefault()
-    handleDeleteCard(selectedCard)
-  }
+  // function handleClickDelete(e) {
+  //   e.preventDefault()
+  //   handleDeleteCard(selectedCard)
+  // }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -150,7 +150,7 @@ export default function App() {
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
           onCardClick={setSelectedCard}
-          onCardDeletePopupOpen={handleDeleteCardClick}
+          onCardDelete={handleDeleteCard}
           onCardLike={handleLikeCard}
           cards={cards}
         />
@@ -172,14 +172,14 @@ export default function App() {
           onUpdateAvatar={handleUpdateAvatar}
           isSubmitForm={isSubmitForm}
         />
-        <PopupWithForm
+        {/* <PopupWithForm
           title='Вы уверены?'
           name='delete'
           buttonText={isSubmitForm ? 'Удаление...' : 'Да'}
           isOpen={isDeleteCardPopupOpen}
           onClose={closeAllPopups}
           onSubmit={handleClickDelete}
-        />
+        /> */}
         <ImagePopup
           card={selectedCard}
           isOpen={isImagePopupOpen}

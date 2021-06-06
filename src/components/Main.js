@@ -10,7 +10,7 @@ export default function Main({
   onAddPlace,
   onEditAvatar,
   onCardClick,
-  onCardDeletePopupOpen,
+  onCardDelete,
   onCardLike,
   cards,
 }) {
@@ -30,7 +30,7 @@ export default function Main({
         cards={cards}
         onOpenImage={onOpenImage}
         onCardClick={onCardClick}
-        onCardDeletePopupOpen={onCardDeletePopupOpen}
+        onCardDelete={onCardDelete}
         onCardLike={onCardLike}
       />
     </main>

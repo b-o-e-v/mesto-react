@@ -5,7 +5,7 @@ export default function Card({
   card,
   onOpenImage,
   onCardClick,
-  onCardDeletePopupOpen,
+  onCardDelete,
   onCardLike,
 }) {
   const currentUser = useContext(CurrentUserContext)
@@ -17,8 +17,7 @@ export default function Card({
   const cardLikeButtonClassName = `card__like ${isLiked && 'card__like_active'}`
 
   function handleClick() {
-    onCardClick(card)
-    onOpenImage(true)
+    onCardClick(card);
   }
 
   function handleClickLike() {
@@ -26,8 +25,7 @@ export default function Card({
   }
 
   function handleClickDelete() {
-    onCardClick(card)
-    onCardDeletePopupOpen()
+    onCardDelete(card)
   }
 
   return (
