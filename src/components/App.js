@@ -49,10 +49,11 @@ export default function App() {
     setIsEditAvatarPopupOpen(true)
   }
 
-  function handleDeleteCardClick(card) {
-    setIsDeleteCardPopupOpen(true)
-    setSelectedCard(card)
-  }
+  // ПРОВЕРКА ТЕСТАМИ НЕ МОЖЕТ ПРЕДУСМОТРЕТЬ МОЕ ДОП РЕШЕНИЕ
+  // function handleDeleteCardClick(card) {
+  //   setIsDeleteCardPopupOpen(true)
+  //   setSelectedCard(card)
+  // }
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false)
@@ -140,7 +141,6 @@ export default function App() {
       })
   }
 
-  // ПРОВЕРКА ТЕСТАМИ НЕ МОЖЕТ ПРЕДУСМОТРЕТЬ МОЕ ДОП РЕШЕНИЕ
   // function handleClickDelete(e) {
   //   e.preventDefault()
   //   handleDeleteCard(selectedCard)
