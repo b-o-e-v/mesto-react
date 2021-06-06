@@ -186,7 +186,7 @@ export default function App() {
         /> */}
         <ImagePopup
           card={selectedCard}
-          isOpen={isImagePopupOpen}
+          // isOpen={isImagePopupOpen}
           isClose={closeAllPopups}
         />
         <Footer />
