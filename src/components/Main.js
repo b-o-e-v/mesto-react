@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useContext } from 'react'
+import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 import Profile from './Profile'
 import Gallery from './Gallery'
-
-import { api } from '../utils/api'
 
 export default function Main({
   onEditProfile,
@@ -11,42 +10,28 @@ export default function Main({
   onEditAvatar,
   onCardClick,
   onCardDeletePopupOpen,
+  onCardLike,
+  onCardDelete,
+  cards,
 }) {
-  const [userID, setUserID] = useState('')
-  const [userName, setUserName] = useState('')
-  const [userDescription, setUserDescription] = useState('')
-  const [userAvatar, setUserAvatar] = useState('')
-
-  const [cards, setCards] = useState([])
-
-  useEffect(() => {
-    api
-      .getServerData()
-      .then(([userData, initialCards]) => {
-        setUserName(userData.name)
-        setUserDescription(userData.about)
-        setUserAvatar(userData.avatar)
-        setUserID(userData._id)
-        setCards(initialCards)
-      })
-      .catch((error) => console.log(error))
-  }, [])
+  const currentUser = useContext(CurrentUserContext)
 
   return (
     <main className='main'>
       <Profile
-        userAvatar={userAvatar}
-        userName={userName}
-        userDescription={userDescription}
+        userAvatar={currentUser.avatar}
+        userName={currentUser.name}
+        userDescription={currentUser.about}
         onEditAvatar={onEditAvatar}
         onEditProfile={onEditProfile}
         onAddPlace={onAddPlace}
       />
       <Gallery
-        userID={userID}
         cards={cards}
         onCardClick={onCardClick}
         onCardDeletePopupOpen={onCardDeletePopupOpen}
+        onCardLike={onCardLike}
+        onCardDelete={onCardDelete}
       />
     </main>
   )
