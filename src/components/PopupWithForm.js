@@ -1,11 +1,11 @@
 export default function PopupWithForm({
-  title,
   name,
-  buttonText,
+  title,
   isOpen,
   onClose,
   children,
   onSubmit,
+  buttonText,
 }) {
   return (
     <section className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`}>

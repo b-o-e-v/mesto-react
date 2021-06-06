@@ -1,8 +1,4 @@
-export default function ImagePopup({
-  card, 
-  // isOpen, 
-  isClose 
-}) {
+export default function ImagePopup({ card, isClose }) {
   return (
     <section
       className={`popup popup_type_open-photo ${card.link && 'popup_opened'}`}

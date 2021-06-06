@@ -1,31 +1,25 @@
 import { useState, useEffect } from 'react'
-
-import Header from './Header'
-import Main from './Main'
-import Footer from './Footer'
-
-// import PopupWithForm from './PopupWithForm'
-import EditProfilePopup from './EditProfilePopup'
-import AddPlacePopup from './AddPlacePopup'
-import EditAvatarPopup from './EditAvatarPopup'
-import ImagePopup from './ImagePopup'
-
-import { CurrentUserContext } from '../contexts/CurrentUserContext'
-
+import { CurrentUserContext } from '../context/CurrentUserContext'
 import { api } from '../utils/api'
 
+import Main from './Main'
+import Header from './Header'
+import Footer from './Footer'
+
+import ImagePopup from './ImagePopup'
+import AddPlacePopup from './AddPlacePopup'
+import EditAvatarPopup from './EditAvatarPopup'
+import EditProfilePopup from './EditProfilePopup'
+
 export default function App() {
-  // const [isImagePopupOpen, setIsImagePopupOpen] = useState(false)
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
-  // const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false)
-
-  const [currentUser, setCurrentUser] = useState({})
   const [selectedCard, setSelectedCard] = useState({ name: '', link: '' })
+  const [currentUser, setCurrentUser] = useState({})
   const [cards, setCards] = useState([])
 
-  const [isSubmitForm, setIsSubmitForm] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     api
@@ -49,21 +43,55 @@ export default function App() {
     setIsEditAvatarPopupOpen(true)
   }
 
-  // function handleDeleteCardClick() {
-  //   setIsDeleteCardPopupOpen(true)
-  // }
-
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
     setIsEditAvatarPopupOpen(false)
-    // setIsDeleteCardPopupOpen(false)
-    // setIsImagePopupOpen(false)
     setSelectedCard({ name: '', link: '' })
   }
 
   function handleCardClick(card) {
-    setSelectedCard(card);
+    setSelectedCard(card)
+  }
+
+  function handleUpdateAvatar(data) {
+    setIsLoading(true)
+    api
+      .updateAvatar(data)
+      .then((res) => {
+        setCurrentUser(res)
+        closeAllPopups()
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        console.log(error)
+        setIsLoading(false)
+      })
+  }
+
+  function handleUpdateUser(data) {
+    setIsLoading(true)
+    api
+      .setUserInfo(data)
+      .then((res) => {
+        setCurrentUser(res)
+        closeAllPopups()
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        console.log(error)
+        setIsLoading(false)
+      })
+  }
+
+  function handleDeleteCard(card) {
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        const newCards = cards.filter((c) => c._id !== card._id)
+        setCards(newCards)
+      })
+      .catch((error) => console.log(error))
   }
 
   function handleLikeCard(card) {
@@ -78,78 +106,26 @@ export default function App() {
       .catch((error) => console.log(error))
   }
 
-  function handleDeleteCard(card) {
-    setIsSubmitForm(true)
+  function handleAddPlaceSubmit(item) {
+    setIsLoading(true)
     api
-      .deleteCard(card._id)
-      .then(() => {
-        const newCards = cards.filter((c) => c._id !== card._id)
-        setCards(newCards)
-        closeAllPopups()
-        setIsSubmitForm(false)
-      })
-      .catch((error) => {
-        console.log(error)
-        setIsSubmitForm(false)
-      })
-  }
-
-  function handleUpdateUser(data) {
-    setIsSubmitForm(true)
-    api
-      .setUserInfo(data)
-      .then((res) => {
-        setCurrentUser(res)
-        closeAllPopups()
-        setIsSubmitForm(false)
-      })
-      .catch((error) => {
-        console.log(error)
-        setIsSubmitForm(false)
-      })
-  }
-
-  function handleUpdateAvatar(data) {
-    setIsSubmitForm(true)
-    api
-      .updateAvatar(data)
-      .then((res) => {
-        setCurrentUser(res)
-        closeAllPopups()
-        setIsSubmitForm(false)
-      })
-      .catch((error) => {
-        console.log(error)
-        setIsSubmitForm(false)
-      })
-  }
-
-  function handleAddPlaceSubmit(card) {
-    setIsSubmitForm(true)
-    api
-      .addCard(card)
+      .addCard(item)
       .then((res) => {
         setCards([res, ...cards])
         closeAllPopups()
-        setIsSubmitForm(false)
+        setIsLoading(false)
       })
       .catch((error) => {
         console.log(error)
-        setIsSubmitForm(false)
+        setIsLoading(false)
       })
   }
-
-  // function handleClickDelete(e) {
-  //   e.preventDefault()
-  //   handleDeleteCard(selectedCard)
-  // }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='page'>
         <Header />
         <Main
-          // onOpenImage={setIsImagePopupOpen}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
@@ -162,33 +138,21 @@ export default function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateProfile={handleUpdateUser}
-          isSubmitForm={isSubmitForm}
+          isLoading={isLoading}
         />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
-          isSubmitForm={isSubmitForm}
+          isLoading={isLoading}
         />
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
-          isSubmitForm={isSubmitForm}
+          isLoading={isLoading}
         />
-        {/* <PopupWithForm
-          title='Вы уверены?'
-          name='delete'
-          buttonText={isSubmitForm ? 'Удаление...' : 'Да'}
-          isOpen={isDeleteCardPopupOpen}
-          onClose={closeAllPopups}
-          onSubmit={handleClickDelete}
-        /> */}
-        <ImagePopup
-          card={selectedCard}
-          // isOpen={isImagePopupOpen}
-          isClose={closeAllPopups}
-        />
+        <ImagePopup card={selectedCard} isClose={closeAllPopups} />
         <Footer />
       </div>
     </CurrentUserContext.Provider>
