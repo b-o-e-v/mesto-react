@@ -24,7 +24,7 @@ export default function EditProfilePopup({
   useEffect(() => {
     setName(currentUser.name)
     setAbout(currentUser.about)
-  }, [currentUser])
+  }, [currentUser, isOpen])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -49,7 +49,7 @@ export default function EditProfilePopup({
           placeholder='Имя'
           className='popup__input popup__input_string_name'
           onChange={handleUpdateName}
-          value={name ? name : ''}
+          value={name || ''}
           name='name'
           required
           minLength='2'

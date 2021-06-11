@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 import PopupWithForm from './PopupWithForm'
 
@@ -8,19 +8,19 @@ export default function AddPlacePopup({
   onAddPlace,
   isLoading,
 }) {
-  const titleRef = useRef('')
-  const linkRef = useRef('')
+  const [title, setTitle] = useState('')
+  const [link, setLink] = useState('')
 
   useEffect(() => {
-    titleRef.current.value = ''
-    linkRef.current.value = ''
+    setTitle('')
+    setLink('')
   }, [isOpen])
 
   function handleSubmit(e) {
     e.preventDefault()
     onAddPlace({
-      name: titleRef.current.value,
-      link: linkRef.current.value,
+      name: title,
+      link: link,
     })
   }
 
@@ -35,7 +35,8 @@ export default function AddPlacePopup({
     >
       <label htmlFor='card-name-input' className='popup__label'>
         <input
-          ref={titleRef}
+          value={title}
+          onChange={e => setTitle(e.target.value)}
           type='text'
           placeholder='Название'
           className='popup__input popup__input_string_card-name'
@@ -49,7 +50,8 @@ export default function AddPlacePopup({
       </label>
       <label htmlFor='card-link-input' className='popup__label'>
         <input
-          ref={linkRef}
+          value={link}
+          onChange={e => setLink(e.target.value)}
           type='url'
           placeholder='Ссылка на картинку'
           className='popup__input popup__input_string_card-link'

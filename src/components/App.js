@@ -61,12 +61,11 @@ export default function App() {
       .then((res) => {
         setCurrentUser(res)
         closeAllPopups()
-        setIsLoading(false)
       })
       .catch((error) => {
         console.log(error)
-        setIsLoading(false)
       })
+      .finally(() => setIsLoading(false))
   }
 
   function handleUpdateUser(data) {
@@ -76,12 +75,11 @@ export default function App() {
       .then((res) => {
         setCurrentUser(res)
         closeAllPopups()
-        setIsLoading(false)
       })
       .catch((error) => {
         console.log(error)
-        setIsLoading(false)
       })
+      .finally(() => setIsLoading(false))
   }
 
   function handleDeleteCard(card) {
@@ -113,12 +111,11 @@ export default function App() {
       .then((res) => {
         setCards([res, ...cards])
         closeAllPopups()
-        setIsLoading(false)
       })
       .catch((error) => {
         console.log(error)
-        setIsLoading(false)
       })
+      .finally(() => setIsLoading(false))
   }
 
   return (
